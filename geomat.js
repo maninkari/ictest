@@ -7,13 +7,15 @@ Point P1 = R*{cos(𝜃)*cos(ϕ), sin(𝜃)*cos(ϕ), sin(ϕ)}
 
 cos(α) = P1 . P2 = P1 * P2 / |P1| |P2| 
 
-If P1 and P2 are unitVectors -> 
+If P1 and P2 are unitVectors -> P1| = |P2| = 1 ->
 
 cos(α) = P1 . P2 = P1 * P2 / |P1| |P2| = P1 * P2
 
 α = acos( P1*P2 )
 
 distance between points = R * α
+
+distanceDotProduct somehow can be simplify to distanceFormula 
 */
 
 const dotProduct = (v1, v2) => {
@@ -30,10 +32,10 @@ const magnitude = (v) => {
   return Math.sqrt(dotProduct(v, v))
 }
 
-const distance = (R, lat1, long1, lat2, long2) => {
+const distanceDotProduct = (R, lat1, long1, lat2, long2) => {
   let v1 = unitVector(lat1, long1)
   let v2 = unitVector(lat2, long2)
-  let cos_α = dotProduct(v1, v2) // no need to divide by |v1| and |v2|
+  let cos_α = dotProduct(v1, v2) // no need to divide by |v1| and |v2| since both = 1
 
   return R * Math.acos(cos_α)
 }
@@ -55,7 +57,7 @@ const distanceFormula = (R, lat1, long1, lat2, long2) => {
       Math.cos(ϕ1) * Math.cos(ϕ2) * Math.cos(𝜃2-𝜃1)
   )
 
-  return R*α
+  return R * α
 }
 
 exports.distance = distanceFormula
