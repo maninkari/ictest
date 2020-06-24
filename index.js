@@ -3,7 +3,7 @@
 
 var path = require('path')
 var fs = require('fs')
-var Transform = require('stream').Transform
+var LineStream = require('byline').LineStream
 
 var args = require('minimist')(process.argv.slice(2), {
   boolean: ['help', 'in', 'out'],
@@ -28,18 +28,10 @@ if (args.help || process.argv.length <= 2) {
 
 function processFile(inStream) {
   var outStream = inStream
-
-  var upperStream = new Transform({
-    transform(chunk, enc, callbk) {
-      // process.stdout.write(chunk);
-      this.push(chunk.toString().toUpperCase())
-      callbk()
-    },
-  })
-
-  outStream = outStream.pipe(upperStream)
-
+  var lineStream = new LineStream()
   var targetStream
+
+  outStream = outStream.pipe(lineStream)
 
   if (args.out) {
     targetStream = process.stdout
@@ -47,7 +39,11 @@ function processFile(inStream) {
     targetStream = fs.createWriteStream(OUTFILE)
   }
 
-  outStream.pipe(targetStream)
+  lineStream.on('data', function (line) {
+    let user = JSON.parse(line)
+
+    if (user.latitude > 54) targetStream.write(JSON.stringify(user) + '\n')
+  })
 }
 
 function error(err, showHelp = false) {
