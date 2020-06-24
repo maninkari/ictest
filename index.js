@@ -4,6 +4,7 @@
 var path = require('path')
 var fs = require('fs')
 var LineStream = require('byline').LineStream
+var geomat = require('./geomat')
 
 var args = require('minimist')(process.argv.slice(2), {
   boolean: ['help', 'in', 'out'],
@@ -12,6 +13,11 @@ var args = require('minimist')(process.argv.slice(2), {
 
 const BASE_PATH = path.resolve(process.env.BASE_PATH || __dirname)
 const OUTFILE = path.join(BASE_PATH, 'out.txt')
+
+// constants needed for calculating the distance
+const DUBLIN_COORDS = [53.339428, -6.257664]
+const EARTH_RADIUS = 6371 // KMs
+const D = 100 // KMs
 
 if (args.help || process.argv.length <= 2) {
   error(null, true)
@@ -42,7 +48,15 @@ function processFile(inStream) {
   lineStream.on('data', function (line) {
     let user = JSON.parse(line)
 
-    if (user.latitude > 54) targetStream.write(JSON.stringify(user) + '\n')
+    user.distance = geomat.distance(
+      6371,
+      DUBLIN_COORDS[0],
+      DUBLIN_COORDS[1],
+      user.latitude,
+      user.longitude
+    )
+
+    if (user.distance <= D) targetStream.write(JSON.stringify(user) + '\n')
   })
 }
 
