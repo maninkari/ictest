@@ -1,0 +1,13 @@
+{
+  "name": "ictest",
+  "version": "1.0.0",
+  "description": "take home test",
+  "main": "index.js",
+  "author": "Roberto Torres",
+  "license": "MIT",
+  "dependencies": {
+    "get-stdin": "^8.0.0",
+    "minimist": "^1.2.5",
+    "stream": "^0.0.2"
+  }
+}
