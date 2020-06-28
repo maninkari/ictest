@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="1.486" tests="5" failures="0">
+  <testsuite name="Root Suite" timestamp="2020-06-28T06:01:09" tests="0" file="cypress/e2e/commands.js" failures="0" time="0">
+  </testsuite>
+  <testsuite name="Commands" timestamp="2020-06-28T06:01:09" tests="5" failures="0" time="1.486">
+    <testcase name="Commands file with test data exists" time="0.095" classname="file with test data exists">
+    </testcase>
+    <testcase name="Commands command creates output.txt file with expected data" time="0.801" classname="command creates output.txt file with expected data">
+    </testcase>
+    <testcase name="Commands command selects users within a 100Km radius from the Dublin office" time="0.225" classname="command selects users within a 100Km radius from the Dublin office">
+    </testcase>
+    <testcase name="Commands command selects users within a 400Km radius from the Dublin office" time="0.18" classname="command selects users within a 400Km radius from the Dublin office">
+    </testcase>
+    <testcase name="Commands command passes list of users from stdin" time="0.185" classname="command passes list of users from stdin">
+    </testcase>
+  </testsuite>
+</testsuites>

@@ -15,7 +15,7 @@ cos(α) = P1 . P2 = P1 * P2 / |P1| |P2| = P1 * P2
 
 distance between points = R * α
 
-distanceDotProduct somehow can be simplify to distanceFormula 
+distanceDotProduct somehow can be simplified to distanceFormula 
 */
 
 const dotProduct = (v1, v2) => {
