@@ -24,7 +24,9 @@ if (args.help || process.argv.length <= 2) {
 } else if (args._.includes('-') || args.in) {
   processFile(process.stdin)
 } else if (args.file) {
-  let stream = fs.createReadStream(path.join(BASE_PATH, args.file))
+  // let stream = fs.createReadStream(path.join(BASE_PATH, args.file))
+  // need full path to file
+  let stream = fs.createReadStream(args.file)
   processFile(stream)
 } else {
   error('Incorrect usage.', true)
