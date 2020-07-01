@@ -13,7 +13,7 @@
     "stream": "^0.0.2"
   },
   "scripts": {
-    "start":"electron .",
+    "start": "electron .",
     "cy:open": "cypress open",
     "cy:run": "cypress run --reporter junit --reporter-options 'mochaFile=cypress/results/junit.xml'"
   },

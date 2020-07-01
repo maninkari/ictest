@@ -8,18 +8,24 @@
     <meta name="description" content="Intercom" />
     <meta name="author" content="roberto.torres" />
 
-    <!-- <link rel="stylesheet" href="css/styles.css?v=1.0" /> -->
+    <link rel="stylesheet" href="styles.css" />
   </head>
 
   <body>
-    <!-- <script src="js/script.js"></script> -->
-    <h1>Itercom</h1>
-    <h3>Take Home Test</h3>
-    <p>Roberto Torres</p>
-    <button id="btnOpen">Open</button>
-    <button id="btnSave">Save</button>
-    <div id="file"></div>
-    <div id="userlist"></div>
+    <div class="header">
+      <h1>Itercom</h1>
+      <p>Take Home Test</p>
+      <p>Roberto Torres</p>
+    </div>
+    <div class="buttons">
+      <button id="btnOpen">Open</button>
+      <button id="btnSave">Save</button>
+    </div>
+    <div class="output">
+      <div id="file"></div>
+      <div id="userlist" class="console"></div>
+    </div>
+
     <script>
       require('./renderer/renderer')
     </script>

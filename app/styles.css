@@ -1,0 +1,29 @@
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: small;
+}
+
+.header,
+.buttons,
+.output {
+  margin: 5px;
+  margin-bottom: 15px;
+}
+
+.header p {
+  margin: 0px;
+}
+
+.output {
+  display: none;
+}
+
+.output .console {
+  background-color: black;
+  color: white;
+  padding: 5px;
+}
+
+.output #file {
+  font-weight: bold;
+}
