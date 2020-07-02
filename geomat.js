@@ -3,7 +3,7 @@
 ϕ = latitude in Radians
 R = radius
 
-Point P1 = R*{cos(𝜃)*cos(ϕ), sin(𝜃)*cos(ϕ), sin(ϕ)}
+Point P = R*{cos(𝜃)*cos(ϕ), sin(𝜃)*cos(ϕ), sin(ϕ)}
 
 cos(α) = P1 . P2 = P1 * P2 / |P1| |P2| 
 
@@ -15,36 +15,8 @@ cos(α) = P1 . P2 = P1 * P2 / |P1| |P2| = P1 * P2
 
 distance between points = R * α
 
-distanceDotProduct somehow can be simplified to distanceFormula 
+distanceDotProduct can be simplified to distanceFormula 
 */
-
-const dotProduct = (v1, v2) => {
-  return v1
-    .map((x, i) => {
-      return v1[i] * v2[i]
-    })
-    .reduce((m, n) => {
-      return m + n
-    })
-}
-
-const magnitude = (v) => {
-  return Math.sqrt(dotProduct(v, v))
-}
-
-const distanceDotProduct = (R, lat1, long1, lat2, long2) => {
-  let v1 = unitVector(lat1, long1)
-  let v2 = unitVector(lat2, long2)
-  let cos_α = dotProduct(v1, v2) // no need to divide by |v1| and |v2| since both = 1
-
-  return R * Math.acos(cos_α)
-}
-
-const unitVector = (latitude, longitude) => {
-  let 𝜃 = longitude * Math.PI / 180
-  let ϕ = latitude * Math.PI / 180  
-  return [Math.cos(𝜃) * Math.cos(ϕ), Math.sin(𝜃) * Math.cos(ϕ), Math.sin(ϕ)]
-}
 
 const distanceFormula = (R, lat1, long1, lat2, long2) => {
   let 𝜃1 = long1 * Math.PI / 180

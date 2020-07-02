@@ -22,10 +22,10 @@ ipcRenderer.on('file-processed', (event, file, content) => {
   if (users && users.length > 0) {
     users.map((user) => {
       if (user.trim()) {
-        let user_json = JSON.parse(user)
+        let userArr = user.trim().split('\t')
         let div = document.createElement('div')
 
-        div.innerHTML = user_json.name
+        div.innerHTML = `${userArr[0]}\t${userArr[1]}`
 
         userlist.appendChild(div)
       }

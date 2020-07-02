@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="Mocha Tests" time="0.849" tests="5" failures="0">
-  <testsuite name="Root Suite" timestamp="2020-06-29T20:34:35" tests="0" file="cypress/e2e/tests.js" failures="0" time="0">
+<testsuites name="Mocha Tests" time="1.112" tests="5" failures="0">
+  <testsuite name="Root Suite" timestamp="2020-07-02T22:00:16" tests="0" file="cypress/e2e/tests.js" failures="0" time="0">
   </testsuite>
-  <testsuite name="E2E tests" timestamp="2020-06-29T20:34:35" tests="5" failures="0" time="0.849">
-    <testcase name="E2E tests file with test data exists" time="0.035" classname="file with test data exists">
+  <testsuite name="E2E tests" timestamp="2020-07-02T22:00:16" tests="5" failures="0" time="1.112">
+    <testcase name="E2E tests file with test data exists" time="0.037" classname="file with test data exists">
     </testcase>
-    <testcase name="E2E tests output.txt file with expected data is created" time="0.523" classname="output.txt file with expected data is created">
+    <testcase name="E2E tests output.txt file with expected data is created" time="0.748" classname="output.txt file with expected data is created">
     </testcase>
-    <testcase name="E2E tests users within a 100Km radius from the Dublin office can be selected" time="0.112" classname="users within a 100Km radius from the Dublin office can be selected">
+    <testcase name="E2E tests users within a 100Km radius from the Dublin office can be filtered" time="0.103" classname="users within a 100Km radius from the Dublin office can be filtered">
     </testcase>
-    <testcase name="E2E tests users within a 400Km radius from the Dublin office can be selected" time="0.093" classname="users within a 400Km radius from the Dublin office can be selected">
+    <testcase name="E2E tests list of filtered users is sorted by user Id" time="0.103" classname="list of filtered users is sorted by user Id">
     </testcase>
-    <testcase name="E2E tests list of users can be read from stdin" time="0.086" classname="list of users can be read from stdin">
+    <testcase name="E2E tests list of users can be read from stdin" time="0.121" classname="list of users can be read from stdin">
     </testcase>
   </testsuite>
 </testsuites>
