@@ -1,18 +1,20 @@
 #!/usr/bin/env node
 'use strict'
 
-const path = require('path')
 const fs = require('fs')
+const path = require('path')
+const spawn = require('child_process').spawn
 const LineStream = require('byline').LineStream
 const geomat = require('./geomat')
 
 const args = require('minimist')(process.argv.slice(2), {
   boolean: ['help', 'in', 'out'],
-  string: ['file', 'distance'],
+  string: ['file', 'distance']
 })
 
 const BASE_PATH = path.resolve(process.env.BASE_PATH || __dirname)
-const OUTFILE = path.join(BASE_PATH, 'out.txt')
+const OUTFILE_TEMP = path.join(BASE_PATH, 'out_temp.txt')
+const OUTFILE_SORTED = path.join(BASE_PATH, 'out.txt')
 
 // constants needed for calculating the distance
 const DUBLIN_COORDS = [53.339428, -6.257664]
@@ -35,6 +37,7 @@ if (args.help || process.argv.length <= 2) {
 function processFile(inStream) {
   let outStream = inStream
   let lineStream = new LineStream()
+  let tempStream = fs.createWriteStream(OUTFILE_TEMP)
   let targetStream
 
   outStream = outStream.pipe(lineStream)
@@ -42,21 +45,36 @@ function processFile(inStream) {
   if (args.out) {
     targetStream = process.stdout
   } else {
-    targetStream = fs.createWriteStream(OUTFILE)
+    targetStream = fs.createWriteStream(OUTFILE_SORTED)
   }
 
-  lineStream.on('data', function (line) {
+  lineStream.on('data', (line) => {
     let user = JSON.parse(line)
 
-    user.distance = geomat.distance(
-      6371,
+    let distance = geomat.distance(
+      EARTH_RADIUS,
       DUBLIN_COORDS[0],
       DUBLIN_COORDS[1],
       user.latitude,
       user.longitude
     )
 
-    if (user.distance <= D) targetStream.write(JSON.stringify(user) + '\n')
+    if (distance <= D) tempStream.write(user.user_id + '\t' + user.name + '\n')
+  })
+
+  lineStream.on('finish', () => {
+    let sortUsers = spawn('sort', ['-n', '-k', '1', 'out_temp.txt'])
+
+    sortUsers.stdout.pipe(targetStream)
+
+    sortUsers.on('close', (code) => {
+      // if all good delete OUTFILE_TEMP
+      if (!code) {
+        fs.unlink(OUTFILE_TEMP, function(err) {
+          if (err) throw err
+        })
+      }
+    })
   })
 }
 
