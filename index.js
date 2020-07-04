@@ -15,6 +15,7 @@ const args = require('minimist')(process.argv.slice(2), {
 const BASE_PATH = path.resolve(process.env.BASE_PATH || __dirname)
 const OUTFILE_TEMP = path.join(BASE_PATH, 'out_temp.txt')
 const OUTFILE_SORTED = path.join(BASE_PATH, 'out.txt')
+const OUTFILE_COORDS = path.join(BASE_PATH, 'coords.txt')
 
 // constants needed for calculating the distance
 const DUBLIN_COORDS = [53.339428, -6.257664]
@@ -27,7 +28,7 @@ if (args.help || process.argv.length <= 2) {
   processFile(process.stdin)
 } else if (args.file) {
   // let stream = fs.createReadStream(path.join(BASE_PATH, args.file))
-  // need full path to file
+  // need full path to file for electron dialog
   let stream = fs.createReadStream(args.file)
   processFile(stream)
 } else {
@@ -40,6 +41,7 @@ function processFile(inStream) {
   let outStream = inStream
   let lineStream = new LineStream()
   let tempStream = fs.createWriteStream(OUTFILE_TEMP)
+  let coordsStream = fs.createWriteStream(OUTFILE_COORDS)
   let targetStream
 
   outStream = outStream.pipe(lineStream)
@@ -61,7 +63,13 @@ function processFile(inStream) {
       user.longitude
     )
 
-    if (distance <= D) tempStream.write(user.user_id + '\t' + user.name + '\n')
+    if (distance && distance <= D) {
+      user.distance = distance
+      coordsStream.write(JSON.stringify(user) + '\n')
+      tempStream.write(
+        user.user_id + '\t' + user.name + '\t' + user.distance + '\n'
+      )
+    }
   })
 
   lineStream.on('finish', () => {

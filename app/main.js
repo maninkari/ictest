@@ -10,8 +10,8 @@ app.on('ready', () => {
     show: false,
     webPreferences: {
       nodeIntegration: true,
-      enableRemoteModule: true,
-    },
+      enableRemoteModule: true
+    }
   })
   mainWindow.loadURL(`file://${__dirname}/index.html`)
 
@@ -20,11 +20,18 @@ app.on('ready', () => {
   })
 })
 
+const getCoordsFile = () => {
+  const data = fs.readFileSync(`${__dirname}/../coords.txt`, {
+    encoding: 'utf8'
+  })
+  mainWindow.webContents.send('coords', 'coords.txt', data)
+}
+
 const getFileFromUserAndProcess = () => {
   const files = dialog.showOpenDialog({
     properties: ['openFile'],
     filters: [{ name: 'Text Files', extensions: ['txt'] }],
-    defaultPath: './',
+    defaultPath: './'
   })
 
   if (files) {
@@ -36,14 +43,18 @@ const getFileFromUserAndProcess = () => {
 }
 
 const processFile = (file) => {
-  exec(`./index.js --file=${file} --out`, (err, stdout, stderr) => {
-    if (err) {
-      //some err occurred
-      console.error(err)
-    } else {
-      mainWindow.webContents.send('file-processed', file, stdout)
+  exec(
+    `./index.js --file=${file} --out --distance=150`,
+    (err, stdout, stderr) => {
+      if (err) {
+        //some err occurred
+        console.error(err)
+      } else {
+        mainWindow.webContents.send('file-processed', file, stdout)
+        getCoordsFile()
+      }
     }
-  })
+  )
 }
 
 const saveOutputFile = () => {

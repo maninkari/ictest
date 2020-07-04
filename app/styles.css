@@ -27,3 +27,13 @@ body {
 .output #file {
   font-weight: bold;
 }
+
+#svgmap {
+  width: 100%;
+  height: 300px;
+  background-color: gainsboro;
+}
+
+.lineas {
+  stroke: white;
+}
