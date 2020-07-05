@@ -95,4 +95,8 @@ Note that the `sort` function used here is a standard command in Unix-like opera
 
 ## Electron Interface
 
-Switch to the Electron branch, `yarn install` and then `yarn start` to run an Electron application on top of ./index.js.
+Switch to the Electron branch, `yarn install` and then `yarn start` to run the Electron application on top of ./index.js.
+
+Click the **Open** button, select the input file (i.e customers.txt) and see the results displayed on the screen.
+
+Click the **Save** button to save the results to **out.txt**.
