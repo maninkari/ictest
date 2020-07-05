@@ -91,8 +91,14 @@ The output is written in out_temp.txt. Since the input file is read and processe
 
 When the App has finished writing out_temp.txt it creates a child process to sort it by user id and writes the output either to out.txt or stdout if the --out is used. Then out_temp.txt is deleted.
 
-Note that the `sort` function used here is a standard command in Unix-like operating systems and won't be available in Windows. In order to use this command, out_temp.txt needed to be in a CSV-like format.
+⚠️ Note that the `sort` function used here is a standard command in Unix-like operating systems and won't be available in Windows. In order to use this command, out_temp.txt needed to be in a CSV-like format.
 
 ## Electron Interface
 
-Switch to the Electron branch, `yarn install` and then `yarn start` to run an Electron application on top of ./index.js.
+`yarn install` and then `yarn start` to run the Electron application on top of ./index.js.
+
+Click the **Open** button, select the input file (i.e customers.txt) and see the results displayed on the screen.
+
+Click the **Save** button to save the results to **out.txt**.
+
+[image]: https://randomendpoint.s3-eu-west-1.amazonaws.com/interface_c.png

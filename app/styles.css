@@ -28,12 +28,25 @@ body {
   font-weight: bold;
 }
 
+#map {
+  float: right;
+}
+
 #svgmap {
   width: 100%;
   height: 300px;
-  background-color: gainsboro;
+  background-color: black;
+}
+
+#userlist {
+  max-width: 40%;
+  display: inline-block;
 }
 
 .lineas {
-  stroke: white;
+  stroke: gray;
+}
+
+.dots {
+  fill: white;
 }

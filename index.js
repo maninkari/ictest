@@ -66,9 +66,7 @@ function processFile(inStream) {
     if (distance && distance <= D) {
       user.distance = distance
       coordsStream.write(JSON.stringify(user) + '\n')
-      tempStream.write(
-        user.user_id + '\t' + user.name + '\t' + user.distance + '\n'
-      )
+      tempStream.write(user.user_id + '\t' + user.name + '\n')
     }
   })
 

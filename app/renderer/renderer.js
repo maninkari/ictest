@@ -29,7 +29,7 @@ ipcRenderer.on('file-processed', (event, file, content) => {
         let userArr = user.trim().split('\t')
         let div = document.createElement('div')
 
-        div.innerHTML = `${userArr[0]}\t${userArr[1]}\t${userArr[2]}`
+        div.innerHTML = `${userArr[0]}\t${userArr[1]}`
 
         userlist.appendChild(div)
       }
@@ -52,7 +52,7 @@ ipcRenderer.on('coords', (event, file, content) => {
       let long = parseInt(parseFloat(u.longitude * 100))
 
       lines += `<line x1="${DUBLIN[1]}" y1="${DUBLIN[0]}" x2="${long}" y2="${lat}" class="lineas"></line>`
-      points += `<circle cx="${long}" cy="${lat}" r="3"></circle>`
+      points += `<circle cx="${long}" cy="${lat}" r="3" class="dots"></circle>`
     }
   })
 
