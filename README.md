@@ -1,6 +1,12 @@
-# ictest
+# ictest - take home test
 
-take home test
+## Table of Contents
+
+- [Installation](#installation)
+- [Commands](#commands)
+- [Testing](#testing)
+- [Flow Diagram](#flow-diagram)
+- [Electron Interface](#electron)
 
 ## Installation
 
