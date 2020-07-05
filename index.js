@@ -106,6 +106,6 @@ function printHelp() {
   console.log('  --in, -                     process in') // cat ./customers.txt | ./index.js -
   console.log('  --out                       print to stdout')
   console.log('  --file={FILENAME}           read file from {FILENAME}')
-  console.log('  --distance                  distance from Dublin office')
+  console.log('  --distance                  distance from the Dublin office')
   console.log('')
 }
