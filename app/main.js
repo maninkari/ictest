@@ -44,7 +44,7 @@ const getFileFromUserAndProcess = () => {
 
 const processFile = (file) => {
   exec(
-    `./index.js --file=${file} --out --distance=150`,
+    `./index.js --file=${file} --out --distance=100`,
     (err, stdout, stderr) => {
       if (err) {
         //some err occurred
